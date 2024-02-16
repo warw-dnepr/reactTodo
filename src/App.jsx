@@ -1,6 +1,5 @@
 import './App.css'
 import { useState } from 'react'
-import TodoLi from './TodoLi';
 
 export default function App(){
   const[newItem,setNewItem]=useState('');
@@ -23,23 +22,23 @@ export default function App(){
     setItems(newArritem);
   }
 
-  
+    
   return(
     <>
     <h1>TODO List</h1>
     <div className='todo-main'>
-
       <input id= 'input'  
       type="text" placeholder='Add new item' 
       value={newItem}
       onChange={e=>setNewItem(e.target.value)}
       />
-
       <button onClick={addItem}>new todo</button>
 
       <ul>
         {items.map(item=>{
-          <TodoLi key={item.id} item={item} deleteFunk={deleteItem}/>
+          return(
+            <li key={item.id} >{item.value} <button onClick={()=>deleteItem(item.id)}>delete</button></li>
+          )
         })}
       </ul>
     </div>
